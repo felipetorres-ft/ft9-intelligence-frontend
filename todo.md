@@ -41,6 +41,7 @@
 - [ ] Testar login com backend real
 - [ ] Testar criação de organização
 - [ ] Corrigir página Knowledge antes do deploy
-- [ ] Deploy do frontend (público)
+- [ ] Corrigir erro de build no Railway (pnpm install failed)
+- [ ] Deploy do frontend no Railway (em andamento)
 - [ ] Testes end-to-end completos
 - [ ] Gerar link público para compartilhar
