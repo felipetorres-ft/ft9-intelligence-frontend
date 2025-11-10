@@ -3,24 +3,29 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Copy client directory
-COPY client ./client
+# Copy package files from root
+COPY package.json pnpm-lock.yaml ./
 
-# Install pnpm globally
+# Copy all necessary directories
+COPY client ./client
+COPY server ./server
+COPY shared ./shared
+COPY patches ./patches
+
+# Install pnpm
 RUN npm install -g pnpm@latest
 
 # Install dependencies
-WORKDIR /app/client
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
-# Build
+# Build the project
 RUN pnpm build
 
 # Production stage
 FROM nginx:alpine
 
-# Copy built files
-COPY --from=builder /app/client/dist /usr/share/nginx/html
+# Copy built files from dist directory
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
