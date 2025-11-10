@@ -95,7 +95,7 @@ export default function Login() {
           <div className="mt-6 text-center text-sm text-muted-foreground">
             <p>Conta demo:</p>
             <p className="font-mono text-xs mt-1">
-              admin@ft9.com.br / ft9demo
+              admin@final.com / senha123456
             </p>
           </div>
         </CardContent>

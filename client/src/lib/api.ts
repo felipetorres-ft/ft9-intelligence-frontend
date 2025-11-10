@@ -89,49 +89,49 @@ class ApiClient {
 
   // Auth
   async login(data: LoginRequest): Promise<LoginResponse> {
-    return this.request<LoginResponse>('/api/auth/login/json', {
+    return this.request<LoginResponse>('/api/v1/auth/login/json', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
   async getMe(): Promise<User> {
-    return this.request<User>('/api/auth/me');
+    return this.request<User>('/api/v1/auth/me');
   }
 
   // Organization
   async getOrganization(): Promise<Organization> {
-    return this.request<Organization>('/api/organizations/me');
+    return this.request<Organization>('/api/v1/organizations/me');
   }
 
   // Knowledge Base
   async getKnowledge(): Promise<KnowledgeItem[]> {
-    return this.request<KnowledgeItem[]>('/api/knowledge/');
+    return this.request<KnowledgeItem[]>('/api/v1/knowledge/');
   }
 
   async addKnowledge(data: Partial<KnowledgeItem>): Promise<KnowledgeItem> {
-    return this.request<KnowledgeItem>('/api/knowledge/', {
+    return this.request<KnowledgeItem>('/api/v1/knowledge/', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
   async searchKnowledge(query: string): Promise<KnowledgeItem[]> {
-    return this.request<KnowledgeItem[]>('/api/knowledge/search', {
+    return this.request<KnowledgeItem[]>('/api/v1/knowledge/search', {
       method: 'POST',
       body: JSON.stringify({ query, top_k: 5 }),
     });
   }
 
   async ragQuery(query: string): Promise<{ answer: string; sources: KnowledgeItem[] }> {
-    return this.request('/api/knowledge/rag', {
+    return this.request('/api/v1/knowledge/rag', {
       method: 'POST',
       body: JSON.stringify({ query }),
     });
   }
 
   async getKnowledgeStats(): Promise<KnowledgeStats> {
-    return this.request<KnowledgeStats>('/api/knowledge/stats');
+    return this.request<KnowledgeStats>('/api/v1/knowledge/stats');
   }
 }
 

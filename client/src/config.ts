@@ -1,5 +1,5 @@
 // API Configuration
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+export const API_URL = import.meta.env.VITE_API_URL || 'https://ft9-intelligence-backend-production.up.railway.app';
 
 // App Configuration
 export const APP_NAME = 'FT9 Intelligence';

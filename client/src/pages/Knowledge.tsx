@@ -39,9 +39,11 @@ export default function Knowledge() {
     setIsLoading(true);
     try {
       const data = await api.getKnowledge();
-      setKnowledge(data);
+      setKnowledge(Array.isArray(data) ? data : []);
     } catch (error) {
-      toast.error('Erro ao carregar conhecimentos');
+      console.error('Erro ao carregar conhecimentos:', error);
+      setKnowledge([]);
+      // Não mostrar erro se endpoint não existir ainda
     } finally {
       setIsLoading(false);
     }

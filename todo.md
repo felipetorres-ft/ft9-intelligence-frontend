@@ -32,3 +32,15 @@
 - [ ] Documentação para testers
 - [ ] Criar contas de teste
 - [ ] Entregar URLs ao usuário
+
+## Fase 6: Integração Completa (10 Nov 2025)
+- [x] Configurar URL da API do Railway no frontend
+- [x] Atualizar chamadas HTTP para usar API real
+- [x] Corrigir endpoint /api/v1/auth/me (Not Found)
+- [ ] Corrigir erro na página Knowledge (knowledge.map is not a function)
+- [ ] Testar login com backend real
+- [ ] Testar criação de organização
+- [ ] Corrigir página Knowledge antes do deploy
+- [ ] Deploy do frontend (público)
+- [ ] Testes end-to-end completos
+- [ ] Gerar link público para compartilhar
