@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Knowledge from "./pages/Knowledge";
 import Settings from "./pages/Settings";
+import ApiTest from "./pages/ApiTest";
 
 function ProtectedRoute({ component: Component, ...rest }: any) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -41,6 +42,7 @@ function Router() {
       <Route path="/settings">
         {() => <ProtectedRoute component={Settings} />}
       </Route>
+      <Route path="/api-test" component={ApiTest} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
