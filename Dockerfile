@@ -3,13 +3,13 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Copy all files first
-COPY . .
+# Copy client directory
+COPY client ./client
 
 # Install pnpm globally
 RUN npm install -g pnpm@latest
 
-# Install dependencies from client directory
+# Install dependencies
 WORKDIR /app/client
 RUN pnpm install
 
