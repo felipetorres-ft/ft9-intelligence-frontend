@@ -59,9 +59,13 @@ export default function Knowledge() {
       setTitle('');
       setContent('');
       setCategory('');
-      loadKnowledge();
+      await loadKnowledge();
+      // Recarregar contagem no dashboard
+      window.dispatchEvent(new Event('knowledge-updated'));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Erro ao adicionar');
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+      toast.error(`Não foi possível adicionar o documento: ${errorMessage}`);
+      console.error('Erro ao adicionar conhecimento:', error);
     } finally {
       setIsAdding(false);
     }
@@ -77,7 +81,9 @@ export default function Knowledge() {
       setSearchResults(results);
       toast.success(`${results.length} resultados encontrados`);
     } catch (error) {
-      toast.error('Erro ao buscar');
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+      toast.error(`Não foi possível buscar documentos: ${errorMessage}`);
+      console.error('Erro ao buscar:', error);
     } finally {
       setIsSearching(false);
     }
@@ -94,7 +100,9 @@ export default function Knowledge() {
       setRagSources(result.sources);
       toast.success('Resposta gerada!');
     } catch (error) {
-      toast.error('Erro ao gerar resposta');
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
+      toast.error(`Não foi possível gerar resposta: ${errorMessage}`);
+      console.error('Erro ao processar RAG:', error);
     } finally {
       setIsRagLoading(false);
     }

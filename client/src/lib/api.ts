@@ -117,21 +117,22 @@ class ApiClient {
   }
 
   async searchKnowledge(query: string): Promise<KnowledgeItem[]> {
-    return this.request<KnowledgeItem[]>('/api/v1/knowledge/search', {
-      method: 'POST',
-      body: JSON.stringify({ query, top_k: 5 }),
-    });
+    return this.request<KnowledgeItem[]>(`/api/v1/knowledge/search?query=${encodeURIComponent(query)}&limit=5`);
   }
 
   async ragQuery(query: string): Promise<{ answer: string; sources: KnowledgeItem[] }> {
     return this.request('/api/v1/knowledge/rag', {
       method: 'POST',
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ question: query }),
     });
   }
 
   async getKnowledgeStats(): Promise<KnowledgeStats> {
     return this.request<KnowledgeStats>('/api/v1/knowledge/stats');
+  }
+
+  async getKnowledgeCount(): Promise<{ count: number }> {
+    return this.request<{ count: number }>('/api/v1/knowledge/count');
   }
 }
 

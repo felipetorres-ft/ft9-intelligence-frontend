@@ -21,6 +21,20 @@ export default function Dashboard() {
       setStats(data);
     } catch (error) {
       console.error('Failed to load stats:', error);
+      // Fallback: tentar carregar apenas a contagem
+      try {
+        const countData = await api.getKnowledgeCount();
+        setStats({
+          organization_knowledge_count: countData.count,
+          vector_store: {
+            total_vectors: countData.count,
+            dimension: 1536,
+            index_type: 'pgvector'
+          }
+        });
+      } catch (countError) {
+        console.error('Failed to load count:', countError);
+      }
     } finally {
       setIsLoading(false);
     }
