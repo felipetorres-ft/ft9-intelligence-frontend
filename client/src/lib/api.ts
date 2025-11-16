@@ -121,9 +121,8 @@ class ApiClient {
   }
 
   async ragQuery(query: string): Promise<{ answer: string; sources: KnowledgeItem[] }> {
-    return this.request('/api/v1/knowledge/rag', {
+    return this.request(`/api/v1/knowledge/rag?question=${encodeURIComponent(query)}`, {
       method: 'POST',
-      body: JSON.stringify({ question: query }),
     });
   }
 
