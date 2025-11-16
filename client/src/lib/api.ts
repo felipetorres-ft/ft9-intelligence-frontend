@@ -106,7 +106,7 @@ class ApiClient {
 
   // Knowledge Base
   async getKnowledge(): Promise<KnowledgeItem[]> {
-    return this.request<KnowledgeItem[]>('/api/v1/knowledge/');
+    return this.request<KnowledgeItem[]>('/api/v1/knowledge/list');
   }
 
   async addKnowledge(data: Partial<KnowledgeItem>): Promise<KnowledgeItem> {
